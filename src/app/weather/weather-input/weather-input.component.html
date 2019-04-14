@@ -1,0 +1,16 @@
+<div class="ng-autocomplete">
+  <ng-autocomplete [data]="states" [searchKeyword]="states" placeHolder="Enter the State Name"
+    historyIdentifier="states" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" #cityName>
+  </ng-autocomplete>
+
+  <ng-template #itemTemplate let-item>
+    <div class="item">
+      <span [innerHTML]="item"></span>
+    </div>
+  </ng-template>
+
+  <ng-template #notFoundTemplate let-notFound>
+    <div [innerHTML]="notFound"></div>
+  </ng-template>
+  <button (click)="selectEvent(cityName.query)" type="button">Get Weather</button>
+</div>

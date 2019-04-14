@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+// colors
+$primary: #00bcd4;
+$white: #fff;
+$gray: #f5f6f7;
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+.application-holder {
+  height: 100vh;
+
+  app-weather-input {
+    background: $primary;
+    // color: $white;
+    padding: 20px;
+
+    .ng-autocomplete {
+      width: 100%;
+    }
+  }
+
+  app-weather-result {
+    background: $gray;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,10 @@
+<div *ngIf="weatherData">
+  <ul *ngFor="let weather of weatherData">
+    <li>{{weather.cityName}}</li>
+    <li>{{weather.description}}</li>
+    <li>{{weather.temp}}</li>
+    <li>{{weather.date | date: 'ddddM'}}</li>
+    <li><img src="http://openweathermap.org/img/w/{{weather.img}}.png" alt=""></li>
+    <br>
+  </ul>
+</div>
