@@ -8,6 +8,7 @@ import { BehaviorSubject } from "rxjs";
 export class ApiService {
   apiKey: string = "&APPID=5eae30c9f83ee5318bb870a2cf5db8ab";
   base_url: string = "http://api.openweathermap.org/data/2.5/forecast?";
+  unit: string = "&units=metric";
 
   // behaviour subject
   private weatherDataSource = new BehaviorSubject<any>("loading");
@@ -18,11 +19,15 @@ export class ApiService {
   getData(paramtr1?, paramtr2?) {
     if (paramtr2 == "city") {
       // with city name
-      return this.http.get(`${this.base_url}q=${paramtr1}${this.apiKey}`);
+      return this.http.get(
+        `${this.base_url}q=${paramtr1}${this.apiKey}${this.unit}`
+      );
     } else {
       // with lat lng
       return this.http.get(
-        `${this.base_url}lat=${paramtr1}&lon=${paramtr2}${this.apiKey}`
+        `${this.base_url}lat=${paramtr1}&lon=${paramtr2}${this.apiKey}${
+          this.unit
+        }`
       );
     }
   }

@@ -15,6 +15,8 @@ export class WeatherResultComponent implements OnInit {
   weather: Weather[] = [];
   data: string;
 
+  unitMetric: true;
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {

@@ -1,8 +1,20 @@
+<div>
+  <label class="switch">
+    <input type="checkbox" [checked]="unitMetric" (change)="unitMetric = !unitMetric">
+    <span class="slider">
+      <span class="c">&deg;c</span>
+      <span class="f">&deg;F</span>
+    </span>
+  </label>
+</div>
+
+
 <div *ngIf="weatherData">
   <ul *ngFor="let weather of weatherData">
     <li>{{weather.cityName}}</li>
     <li>{{weather.description}}</li>
-    <li>{{weather.temp}}</li>
+    <li *ngIf="unitMetric">tem C: {{weather.temp}}&deg;C</li>
+    <li *ngIf="!unitMetric">tem F: {{weather.temp | tempConverter:'F'}}&deg;F</li>
     <li>{{weather.date | date: 'ddddM'}}</li>
     <li><img src="http://openweathermap.org/img/w/{{weather.img}}.png" alt=""></li>
     <br>
