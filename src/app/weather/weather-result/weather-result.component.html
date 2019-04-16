@@ -1,6 +1,17 @@
+<!-- <result-tabs>
+  <result-tabs [tabTitle]="kk">
+    <div>
+      fghhfg
+    </div>
+  </result-tabs>
+  <result-tabs [tabTitle]="'Graph'">
+    weather graph
+  </result-tabs>
+</result-tabs> -->
+<app-weather-chart></app-weather-chart>
 <div>
   <label class="switch">
-    <input type="checkbox" [checked]="unitMetric" (change)="unitMetric = !unitMetric">
+    <input type="checkbox" [checked]="unitMetric" (change)="unitMetric = !unitMetric" />
     <span class="slider">
       <span class="c">&deg;c</span>
       <span class="f">&deg;F</span>
@@ -8,15 +19,18 @@
   </label>
 </div>
 
-
 <div *ngIf="weatherData">
   <ul *ngFor="let weather of weatherData">
-    <li>{{weather.cityName}}</li>
-    <li>{{weather.description}}</li>
-    <li *ngIf="unitMetric">tem C: {{weather.temp}}&deg;C</li>
-    <li *ngIf="!unitMetric">tem F: {{weather.temp | tempConverter:'F'}}&deg;F</li>
-    <li>{{weather.date | date: 'ddddM'}}</li>
-    <li><img src="http://openweathermap.org/img/w/{{weather.img}}.png" alt=""></li>
-    <br>
+    <li>{{ weather.cityName }}</li>
+    <li>{{ weather.description }}</li>
+    <li *ngIf="unitMetric">tem C: {{ weather.temp }}&deg;C</li>
+    <li *ngIf="!unitMetric">
+      tem F: {{ weather.temp | tempConverter: "F" }}&deg;F
+    </li>
+    <li>{{ weather.date | date: "ddddM" }}</li>
+    <li>
+      <img src="http://openweathermap.org/img/w/{{ weather.img }}.png" alt="" />
+    </li>
+    <br />
   </ul>
 </div>
