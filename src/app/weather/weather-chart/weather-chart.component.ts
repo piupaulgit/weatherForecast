@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { map, tap, filter, scan, retry, catchError } from "rxjs/operators";
 import * as Highcharts from "highcharts";
 import { ApiService } from "../../services/api.service";
 
@@ -18,9 +19,16 @@ noData(Highcharts);
   styleUrls: ["./weather-chart.component.scss"]
 })
 export class WeatherChartComponent implements OnInit {
-  @Input() weather: any;
+  weather: any = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+    this.apiService.updatedWeatherData.subscribe(data => {
+      this.weather = data;
+      console.log(this.weather);
+    });
+  }
+
+  dates;
 
   public options: any = {
     chart: {
@@ -39,15 +47,7 @@ export class WeatherChartComponent implements OnInit {
       borderWidth: 1
     },
     xAxis: {
-      categories: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-      ]
+      // categories: this.date
     },
     yAxis: {
       title: {
@@ -68,18 +68,16 @@ export class WeatherChartComponent implements OnInit {
     },
     series: [
       {
-        name: "John",
+        name: "temp",
         data: [3, 4, 3, 5, 4, 10, 12]
-      },
-      {
-        name: "Jane",
-        data: [1, 3, 4, 3, 3, 5, 4]
       }
     ]
   };
 
   ngOnInit() {
     Highcharts.chart("container", this.options);
+    // this.apiService.updatedWeatherData.subscribe(data => (this.weather = data));
     console.log(this.weather);
+    // this.apiService.updatedWeatherData.pipe();
   }
 }
