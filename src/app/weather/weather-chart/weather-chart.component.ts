@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import * as Highcharts from "highcharts";
+import { ApiService } from "../../services/api.service";
 
 declare var require: any;
 let Boost = require("highcharts/modules/boost");
@@ -17,7 +18,9 @@ noData(Highcharts);
   styleUrls: ["./weather-chart.component.scss"]
 })
 export class WeatherChartComponent implements OnInit {
-  constructor() {}
+  @Input() weather: any;
+
+  constructor(private apiService: ApiService) {}
 
   public options: any = {
     chart: {
@@ -77,5 +80,6 @@ export class WeatherChartComponent implements OnInit {
 
   ngOnInit() {
     Highcharts.chart("container", this.options);
+    console.log(this.weather);
   }
 }
