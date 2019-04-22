@@ -1,3 +1,42 @@
+<div class="weather-result-holder" *ngIf="weatherData">
+  <h2>Statistics</h2>
+  <div *ngFor="let weather of weatherData; let i = index">
+    <ul *ngIf="i == 0">
+      <li>
+        <h3 class="weather-prop">
+          <span class="prop-img max-temp"><img src="../../../assets/images/max_temp.png" alt=""></span>
+          Max. tempature
+          <span class="weather-val">{{weather.temp_max}}°c</span>
+        </h3>
+      </li>
+      <li>
+        <h3 class="weather-prop">
+          <span class="prop-img min-temp"><img src="../../../assets/images/min_temp.png" alt=""></span>
+          Min. tempature
+          <span class="weather-val">{{weather.temp_min}}°c</span>
+        </h3>
+      </li>
+      <li>
+        <h3 class="weather-prop">
+          <span class="prop-img humidity"><img src="../../../assets/images/humidity.png" alt=""></span>
+          Humidity
+          <span class="weather-val">{{weather.humidity}}%</span>
+        </h3>
+      </li>
+      <li>
+        <h3 class="weather-prop">
+          <span class="prop-img wind-speed"><img src="../../../assets/images/wind-speed.png" alt=""></span>
+          wind speed
+          <span class="weather-val">{{weather.wind_speed}}miles/h</span>
+        </h3>
+      </li>
+    </ul>
+  </div>
+  <br><br><br>
+  <app-weather-chart></app-weather-chart>
+</div>
+
+
 <!-- <result-tabs>
   <result-tabs [tabTitle]="kk">
     <div>

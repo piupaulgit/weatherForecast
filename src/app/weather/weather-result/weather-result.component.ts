@@ -34,17 +34,17 @@ export class WeatherResultComponent implements OnInit {
             this.lat = position.coords.latitude;
             this.lng = position.coords.longitude;
             this.apiService.getData(this.lat, this.lng).subscribe(data => {
-              for (var i = 0; i < data.list.length; i = i + 8) {
+              for (var i = 0; i < data["list"].length; i = i + 8) {
                 const forecastWeather = new Weather(
-                  data.city.name,
-                  data.list[i].dt_txt,
-                  data.list[i].weather[0].description,
-                  data.list[i].weather[0].icon,
-                  data.list[i].main.temp,
-                  data.list[i].main.temp_max,
-                  data.list[i].main.temp_min,
-                  data.list[i].main.humidity,
-                  data.list[i].wind.speed
+                  data["city"].name,
+                  data["list"][i].dt_txt,
+                  data["list"][i].weather[0].description,
+                  data["list"][i].weather[0].icon,
+                  data["list"][i].main.temp,
+                  data["list"][i].main.temp_max,
+                  data["list"][i].main.temp_min,
+                  data["list"][i].main.humidity,
+                  data["list"][i].wind.speed
                 );
                 this.weather.push(forecastWeather);
               }

@@ -1,0 +1,69 @@
+.weather-result-holder {
+
+  h2 {
+    font-weight: lighter;
+    font-size: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, .3);
+    color: #333;
+    text-transform: capitalize;
+    margin: 0 0 20px 0;
+    padding-bottom: 10px;
+  }
+
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+      padding-right: 65px;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .weather-prop {
+    font-size: 15px;
+    font-weight: 500;
+
+    .weather-val {
+      font-size: 18px;
+      margin-top: 8px;
+    }
+
+    .prop-img {
+      display: table;
+      margin: 0 auto;
+      text-align: center;
+      height: 30px;
+      width: 30px;
+
+      &.max-temp,
+      &.min-temp {
+        width: 15px;
+      }
+
+      &.humidity {
+        width: 23px;
+      }
+
+      &.wind-speed {
+        width: 35px;
+
+        img {
+          vertical-align: middle;
+        }
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .weather-val {
+      display: block;
+      text-align: center;
+    }
+  }
+}

@@ -21,6 +21,9 @@ $gray: #f5f6f7;
     width: 100%;
     border-radius: 5px;
     overflow: hidden;
+    -webkit-box-shadow: -2px 11px 16px -9px rgba(168, 156, 168, 1);
+    -moz-box-shadow: -2px 11px 16px -9px rgba(168, 156, 168, 1);
+    box-shadow: -2px 11px 16px -9px rgba(168, 156, 168, 1);
   }
 
   app-weather-input {

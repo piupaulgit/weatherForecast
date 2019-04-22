@@ -24,15 +24,16 @@ export class WeatherChartComponent implements OnInit {
 
   constructor(private apiService: ApiService) {}
 
-  dates: [] = [];
-  temp: [] = [];
+  dates = [];
+  temp = [];
 
   options: any = {
     chart: {
-      type: "spline"
+      type: "line",
+      height: 300
     },
     title: {
-      text: "Average fruit consumption during one week"
+      text: "Next five days weather forecast"
     },
     legend: {
       layout: "vertical",
@@ -47,8 +48,10 @@ export class WeatherChartComponent implements OnInit {
       categories: []
     },
     yAxis: {
+      gridLineWidth: 0,
+      minorGridLineWidth: 0,
       title: {
-        text: "Fruit units"
+        text: "Temparature Unit"
       },
       labels: {
         formatter: function() {
@@ -71,7 +74,8 @@ export class WeatherChartComponent implements OnInit {
     series: [
       {
         name: "temp",
-        data: []
+        data: [],
+        color: "#f14143"
       }
     ]
   };
@@ -79,8 +83,8 @@ export class WeatherChartComponent implements OnInit {
   ngOnInit() {
     this.apiService.updatedWeatherData.subscribe(data => {
       data.map(item => {
-        this.dates.push(item.date);
-        this.temp.push(item.temp);
+        this.dates.push(item["date"]);
+        this.temp.push(item["temp"]);
       });
 
       this.options.xAxis["categories"] = this.dates;

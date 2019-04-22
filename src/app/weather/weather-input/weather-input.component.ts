@@ -10,6 +10,7 @@ import { Weather } from "../../interfaces/weather.model";
 export class WeatherInputComponent implements OnInit {
   weatherdata;
   weather: Weather[] = [];
+  errorMsg: string;
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -20,23 +21,33 @@ export class WeatherInputComponent implements OnInit {
 
   selectEvent(cityName) {
     this.weather = [];
-    this.apiService.getData(cityName, "city").subscribe(data => {
-      for (var i = 0; i < data.list.length; i = i + 8) {
-        const forecastWeather = new Weather(
-          data.city.name,
-          data.list[i].dt_txt,
-          data.list[i].weather[0].description,
-          data.list[i].weather[0].icon,
-          data.list[i].main.temp,
-          data.list[i].main.temp_max,
-          data.list[i].main.temp_min,
-          data.list[i].main.humidity,
-          data.list[i].wind.speed
-        );
-        this.weather.push(forecastWeather);
+    this.apiService.getData(cityName, "city").subscribe(
+      data => {
+        for (var i = 0; i < data["list"].length; i = i + 8) {
+          const forecastWeather = new Weather(
+            data["city"].name,
+            data["list"][i].dt_txt,
+            data["list"][i].weather[0].description,
+            data["list"][i].weather[0].icon,
+            data["list"][i].main.temp,
+            data["list"][i].main.temp_max,
+            data["list"][i].main.temp_min,
+            data["list"][i].main.humidity,
+            data["list"][i].wind.speed
+          );
+          this.weather.push(forecastWeather);
+        }
+        this.apiService.updateWeatherData(this.weather);
+      },
+      error => {
+        this.errorMsg = error.error.message;
+        this.errorFunction(this.errorMsg);
       }
-      this.apiService.updateWeatherData(this.weather);
-    });
+    );
+  }
+
+  errorFunction(err) {
+    alert(err);
   }
 
   states = [
