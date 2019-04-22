@@ -20,19 +20,16 @@ noData(Highcharts);
 })
 export class WeatherChartComponent implements OnInit {
   weather: any = [];
+  loading: boolean = true;
 
-  constructor(private apiService: ApiService) {
-    this.apiService.updatedWeatherData.subscribe(data => {
-      this.weather = data;
-      console.log(this.weather);
-    });
-  }
+  constructor(private apiService: ApiService) {}
 
-  dates;
+  dates: [] = [];
+  temp: [] = [];
 
-  public options: any = {
+  options: any = {
     chart: {
-      type: "areaspline"
+      type: "spline"
     },
     title: {
       text: "Average fruit consumption during one week"
@@ -47,16 +44,21 @@ export class WeatherChartComponent implements OnInit {
       borderWidth: 1
     },
     xAxis: {
-      // categories: this.date
+      categories: []
     },
     yAxis: {
       title: {
         text: "Fruit units"
+      },
+      labels: {
+        formatter: function() {
+          return this.value + " deg";
+        }
       }
     },
     tooltip: {
       shared: true,
-      valueSuffix: " units"
+      valueSuffix: " Deg celsius"
     },
     credits: {
       enabled: false
@@ -69,15 +71,25 @@ export class WeatherChartComponent implements OnInit {
     series: [
       {
         name: "temp",
-        data: [3, 4, 3, 5, 4, 10, 12]
+        data: []
       }
     ]
   };
 
   ngOnInit() {
-    Highcharts.chart("container", this.options);
-    // this.apiService.updatedWeatherData.subscribe(data => (this.weather = data));
-    console.log(this.weather);
-    // this.apiService.updatedWeatherData.pipe();
+    this.apiService.updatedWeatherData.subscribe(data => {
+      data.map(item => {
+        this.dates.push(item.date);
+        this.temp.push(item.temp);
+      });
+
+      this.options.xAxis["categories"] = this.dates;
+      this.options.series[0]["data"] = this.temp;
+
+      this.dates = [];
+      this.temp = [];
+
+      Highcharts.chart("container", this.options);
+    });
   }
 }

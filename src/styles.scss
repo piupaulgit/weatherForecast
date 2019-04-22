@@ -13,11 +13,29 @@ $gray: #f5f6f7;
 }
 
 .application-holder {
-  height: 100vh;
+  min-height: 100vh;
+  padding: 50px;
+  background: $gray;
+
+  .weather-container {
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+  }
 
   app-weather-input {
-    background: $primary;
-    // color: $white;
+    position: relative;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f34c91+0,f77273+52,f78167+100 */
+    background: #f34c91;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #f34c91 0%, #f77273 52%, #f78167 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #f34c91 0%, #f77273 52%, #f78167 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #f34c91 0%, #f77273 52%, #f78167 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f34c91', endColorstr='#f78167', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
     padding: 20px;
 
     .ng-autocomplete {
@@ -26,7 +44,7 @@ $gray: #f5f6f7;
   }
 
   app-weather-result {
-    background: $gray;
+    background: $white;
     padding: 20px;
   }
 }
@@ -112,4 +130,32 @@ input:checked+.slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+button {
+  height: 40px;
+  padding: 10px;
+  text-transform: uppercase;
+  background: #333;
+  color: $white;
+  border: 0;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  font-size: 11px;
+  cursor: pointer;
+
+  &:hover {
+    background: $white;
+    color: #333;
+  }
+}
+
+h1 {
+  color: #fff;
+  font-weight: lighter;
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+.autocomplete-container .suggestions-container {
+  z-index: 99;
 }

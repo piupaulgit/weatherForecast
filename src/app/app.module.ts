@@ -19,6 +19,7 @@ import { FormsModule } from "@angular/forms";
     FlexLayoutModule,
     FormsModule
   ],
+  exports: [FlexLayoutModule],
   providers: [ApiService],
   bootstrap: [AppComponent]
 })

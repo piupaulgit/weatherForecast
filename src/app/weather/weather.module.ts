@@ -6,19 +6,23 @@ import { AutocompleteLibModule } from "angular-ng-autocomplete";
 import { TempConverterPipe } from "../pipes/temp-converter.pipe";
 import { WeatherChartComponent } from "./weather-chart/weather-chart.component";
 // import { TabsComponent } from "./tabs/tabs.component";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { ExtractDatePipe } from "../pipes/extract-date.pipe";
 
 @NgModule({
   declarations: [
     WeatherResultComponent,
     WeatherInputComponent,
     TempConverterPipe,
-    WeatherChartComponent
+    WeatherChartComponent,
+    ExtractDatePipe
   ],
-  imports: [CommonModule, AutocompleteLibModule],
+  imports: [CommonModule, AutocompleteLibModule, FlexLayoutModule],
   exports: [
     WeatherInputComponent,
     WeatherResultComponent,
-    WeatherChartComponent
+    WeatherChartComponent,
+    ExtractDatePipe
   ]
 })
 export class WeatherModule {}

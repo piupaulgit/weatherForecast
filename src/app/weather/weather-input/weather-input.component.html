@@ -1,17 +1,32 @@
-<div class="ng-autocomplete">
-  <ng-autocomplete [data]="states" [searchKeyword]="states" placeHolder="Enter the State Name"
-    historyIdentifier="states" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" #cityName>
-  </ng-autocomplete>
+<h1>Type City Name</h1>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="ng-autocomplete" fxFlex="68">
+    <ng-autocomplete [data]="states" [searchKeyword]="states" placeHolder="Enter the City Name"
+      historyIdentifier="states" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate" #cityName>
+    </ng-autocomplete>
 
-  <ng-template #itemTemplate let-item>
-    <div class="item">
-      <span [innerHTML]="item"></span>
-    </div>
-  </ng-template>
+    <ng-template #itemTemplate let-item>
+      <div class="item">
+        <span [innerHTML]="item"></span>
+      </div>
+    </ng-template>
 
-  <ng-template #notFoundTemplate let-notFound>
-    <div [innerHTML]="notFound"></div>
-  </ng-template>
-  <button (click)="selectEvent(cityName.query)" type="button">Get Weather</button>
-  <br>
+    <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+    </ng-template>
+  </div>
+  <button (click)="selectEvent(cityName.query)" fxFlex="30" type="button">
+    Get Weather
+  </button>
+</div>
+
+<div class="todays-data" *ngFor="let weather of weatherdata; let i = index">
+  <div *ngIf="i == 0">
+    <p>{{ weather.date | extractDate | date: 'mediumDate'}}</p>
+    <h1 class="super-large-text">
+      <span class="weather-icon"><img src="../../../assets/images/{{weather.img}}.png" alt="" /></span>
+      {{ weather.temp }}<sup>°</sup></h1>
+    <h3>{{ weather.cityName | uppercase}}</h3>
+    <p>{{ weather.description }}</p>
+  </div>
 </div>

@@ -11,7 +11,7 @@ export class ApiService {
   unit: string = "&units=metric";
 
   // behaviour subject
-  private weatherDataSource = new BehaviorSubject<any>("loading");
+  private weatherDataSource = new BehaviorSubject<any>([]);
   updatedWeatherData = this.weatherDataSource.asObservable();
 
   constructor(private http: HttpClient) {}
