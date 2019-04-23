@@ -8,7 +8,7 @@ import { catchError } from "rxjs/operators";
 })
 export class ApiService {
   apiKey: string = "&APPID=5eae30c9f83ee5318bb870a2cf5db8ab";
-  base_url: string = "http://api.openweathermap.org/data/2.5/forecast?";
+  base_url: string = "https://api.openweathermap.org/data/2.5/forecast?";
   unit: string = "&units=metric";
   fullUrl: string;
 

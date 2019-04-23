@@ -17,6 +17,10 @@ $gray: #f5f6f7;
   padding: 50px;
   background: $gray;
 
+  @media screen and (max-width: 1280px) {
+    padding: 25px;
+  }
+
   .weather-container {
     width: 100%;
     border-radius: 5px;
@@ -40,6 +44,16 @@ $gray: #f5f6f7;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f34c91', endColorstr='#f78167', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
     padding: 20px;
+
+    @media screen and (max-width: 1280px) {
+      padding: 15px;
+
+      h1 {
+        margin-top: 0;
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
+    }
 
     .ng-autocomplete {
       width: 100%;
@@ -161,4 +175,42 @@ h1 {
 
 .autocomplete-container .suggestions-container {
   z-index: 99;
+}
+
+my-tabs {
+
+  .nav {
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+
+    li {
+      display: inline-block;
+
+      &.active {
+        a {
+          border-bottom: 3px solid #f34c91;
+          background: #f34c91;
+          color: #fff;
+        }
+      }
+
+      a {
+        padding: 15px 50px;
+        background: #f1f1f1;
+        display: block;
+        text-transform: uppercase;
+        font-size: 15px;
+        color: #333;
+        margin-right: 5px;
+        border-bottom: 3px solid transparent;
+        text-decoration: none;
+        font-weight: lighter;
+
+        @media screen and (max-width: 1280px) {
+          padding: 11px 19px;
+        }
+      }
+    }
+  }
 }

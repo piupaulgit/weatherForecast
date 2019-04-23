@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "src/app/services/api.service";
 import { Weather } from "../../interfaces/weather.model";
-
 @Component({
   selector: "app-weather-result",
   templateUrl: "./weather-result.component.html",

@@ -26,11 +26,13 @@ export class WeatherChartComponent implements OnInit {
 
   dates = [];
   temp = [];
+  humidity = [];
+  windSpeed = [];
 
   options: any = {
     chart: {
-      type: "line",
-      height: 300
+      type: "spline",
+      height: 400
     },
     title: {
       text: "Next five days weather forecast"
@@ -47,21 +49,76 @@ export class WeatherChartComponent implements OnInit {
     xAxis: {
       categories: []
     },
-    yAxis: {
-      gridLineWidth: 0,
-      minorGridLineWidth: 0,
-      title: {
-        text: "Temparature Unit"
+    yAxis: [
+      {
+        // Primary yAxis
+        labels: {
+          formatter: function() {
+            return this.value + " °C";
+          },
+          style: {
+            color: "#f14143"
+          }
+        },
+        title: {
+          text: "temperature",
+          style: {
+            color: "#f14143"
+          }
+        },
+        opposite: false,
+        showEmpty: false
       },
-      labels: {
-        formatter: function() {
-          return this.value + " deg";
-        }
+      {
+        // Secondary yAxis
+        gridLineWidth: 0,
+        title: {
+          text: "humidity",
+          style: {
+            color: "#4572A7"
+          }
+        },
+        labels: {
+          formatter: function() {
+            return this.value + " %";
+          },
+          style: {
+            color: "#4572A7"
+          }
+        },
+        showEmpty: false
+      },
+      {
+        // Tertiary yAxis
+        gridLineWidth: 0,
+        title: {
+          text: "wind speed",
+          style: {
+            color: "#AA4643"
+          }
+        },
+        labels: {
+          formatter: function() {
+            return this.value + " m/h";
+          },
+          style: {
+            color: "#AA4643"
+          }
+        },
+        opposite: false,
+        showEmpty: false
       }
-    },
+    ],
     tooltip: {
-      shared: true,
-      valueSuffix: " Deg celsius"
+      formatter: function() {
+        var unit = {
+          temperature: "°C",
+          humidity: "%",
+          "wind speed": "m/h"
+        }[this.series.name];
+
+        return "" + this.x + ": " + this.y + " " + unit;
+      }
     },
     credits: {
       enabled: false
@@ -73,9 +130,23 @@ export class WeatherChartComponent implements OnInit {
     },
     series: [
       {
-        name: "temp",
+        name: "temperature",
         data: [],
+        type: "spline",
+
         color: "#f14143"
+      },
+      {
+        name: "humidity",
+        data: [],
+        yAxis: 1,
+        color: "#4572A7"
+      },
+      {
+        name: "wind speed",
+        data: [],
+        yAxis: 2,
+        color: "#AA4643"
       }
     ]
   };
@@ -83,15 +154,21 @@ export class WeatherChartComponent implements OnInit {
   ngOnInit() {
     this.apiService.updatedWeatherData.subscribe(data => {
       data.map(item => {
-        this.dates.push(item["date"]);
+        this.dates.push(item["date"].toString().split(" ")[0]);
         this.temp.push(item["temp"]);
+        this.humidity.push(item["humidity"]);
+        this.windSpeed.push(item["wind_speed"]);
       });
 
       this.options.xAxis["categories"] = this.dates;
       this.options.series[0]["data"] = this.temp;
+      this.options.series[1]["data"] = this.humidity;
+      this.options.series[2]["data"] = this.windSpeed;
 
       this.dates = [];
       this.temp = [];
+      this.humidity = [];
+      this.windSpeed = [];
 
       Highcharts.chart("container", this.options);
     });

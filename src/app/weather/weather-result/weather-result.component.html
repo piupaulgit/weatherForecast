@@ -4,36 +4,72 @@
     <ul *ngIf="i == 0">
       <li>
         <h3 class="weather-prop">
-          <span class="prop-img max-temp"><img src="../../../assets/images/max_temp.png" alt=""></span>
+          <span class="prop-img max-temp"><img src="assets/images/max_temp.png" alt=""></span>
           Max. tempature
           <span class="weather-val">{{weather.temp_max}}°c</span>
         </h3>
       </li>
       <li>
         <h3 class="weather-prop">
-          <span class="prop-img min-temp"><img src="../../../assets/images/min_temp.png" alt=""></span>
+          <span class="prop-img min-temp"><img src="assets/images/min_temp.png" alt=""></span>
           Min. tempature
           <span class="weather-val">{{weather.temp_min}}°c</span>
         </h3>
       </li>
       <li>
         <h3 class="weather-prop">
-          <span class="prop-img humidity"><img src="../../../assets/images/humidity.png" alt=""></span>
+          <span class="prop-img humidity"><img src="assets/images/humidity.png" alt=""></span>
           Humidity
           <span class="weather-val">{{weather.humidity}}%</span>
         </h3>
       </li>
       <li>
         <h3 class="weather-prop">
-          <span class="prop-img wind-speed"><img src="../../../assets/images/wind-speed.png" alt=""></span>
+          <span class="prop-img wind-speed"><img src="assets/images/wind-speed.png" alt=""></span>
           wind speed
-          <span class="weather-val">{{weather.wind_speed}}miles/h</span>
+          <span class="weather-val">{{weather.wind_speed}}mps</span>
         </h3>
       </li>
     </ul>
   </div>
-  <br><br><br>
-  <app-weather-chart></app-weather-chart>
+  <div class="result-tab-holder">
+    <h2>5 days' weather forecast</h2>
+    <my-tabs>
+      <my-tab tabTitle="List view">
+        <div class="table-holder">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Temparature</th>
+                <th>Max. Temp</th>
+                <th>Min. Temp</th>
+                <th>Humidity</th>
+                <th>Wind Speed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let weather of weatherData;">
+                <td>{{weather.date | extractDate | date: 'mediumDate'}}</td>
+                <td><span class="des-img"><img
+                      src="assets/images/table-{{weather.img}}.png"></span>{{weather.description}}</td>
+                <td>{{weather.temp}}°c</td>
+                <td>{{weather.temp_max}}°c
+                </td>
+                <td>{{weather.temp_min}}°c</td>
+                <td>{{weather.humidity}}%</td>
+                <td>{{weather.wind_speed}}m/h</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </my-tab>
+      <my-tab tabTitle=" Graph view">
+        <app-weather-chart></app-weather-chart>
+      </my-tab>
+    </my-tabs>
+  </div>
 </div>
 
 

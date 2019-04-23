@@ -5,9 +5,10 @@ import { WeatherInputComponent } from "./weather-input/weather-input.component";
 import { AutocompleteLibModule } from "angular-ng-autocomplete";
 import { TempConverterPipe } from "../pipes/temp-converter.pipe";
 import { WeatherChartComponent } from "./weather-chart/weather-chart.component";
-// import { TabsComponent } from "./tabs/tabs.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ExtractDatePipe } from "../pipes/extract-date.pipe";
+import { TabsComponent } from "./tabs/tabs.component";
+import { TabComponent } from "./tabs/tab.component";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { ExtractDatePipe } from "../pipes/extract-date.pipe";
     WeatherInputComponent,
     TempConverterPipe,
     WeatherChartComponent,
-    ExtractDatePipe
+    ExtractDatePipe,
+    TabsComponent,
+    TabComponent
   ],
   imports: [CommonModule, AutocompleteLibModule, FlexLayoutModule],
   exports: [
